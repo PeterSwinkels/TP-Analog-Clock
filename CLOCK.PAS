@@ -31,7 +31,7 @@ begin
     else
     begin
       CurrentTime.Minutes := 0;
-      If CurrentTime.Hours < 12 then
+      if CurrentTime.Hours < 12 then
       begin
         inc(CurrentTime.Hours);
       end
@@ -211,4 +211,5 @@ begin
     Halt;
   end
 end.
+
 
