@@ -56,20 +56,6 @@ begin
   Line(320, 240, x, y);
 end;
 
-procedure EraseHands(CurrentTime: TimeRec);
-var
-  Degrees: integer;
-begin
-  Degrees := (180 - (CurrentTime.Hours * 30)) - Round(CurrentTime.Minutes / 2);
-  DrawHand(Degrees, 70, Black);
-
-  Degrees := (180 - (CurrentTime.Minutes * 6));
-  DrawHand(Degrees, 140, Black);
-
-  Degrees := (180 - (CurrentTime.Seconds * 6));
-  DrawHand(Degrees, 140, Black);
-end;
-
 procedure DrawClock(var CurrentTime: TimeRec);
 var
   Degrees: integer;
@@ -87,7 +73,7 @@ begin
   begin
     Degrees := Degrees + 30;
     Radian := Degrees / DEGREES_PER_RADIAN;
-    if Degrees mod 90 = 0 then MarkStart := 100 else MarkStart :=125;
+    if Degrees mod 90 = 0 then MarkStart := 100 else MarkStart := 125;
     x1 := Round((Sin(Radian) * MarkStart)) + 320;
     y1 := Round((Cos(Radian) * MarkStart)) + 240;
     x2 := Round((Sin(Radian) * 150)) + 320;
@@ -115,6 +101,20 @@ begin
   SetColor(Cyan);
   OutTextXY(8, 8, 'Analog Clock v1.00 - by: Peter Swinkels, ***2025***');
   OutTextXY(8, 16, 'ESC = Quit   A/a = Adjust hours/minutes.');
+end;
+
+procedure EraseHands(CurrentTime: TimeRec);
+var
+  Degrees: integer;
+begin
+  Degrees := (180 - (CurrentTime.Hours * 30)) - Round(CurrentTime.Minutes / 2);
+  DrawHand(Degrees, 70, Black);
+
+  Degrees := (180 - (CurrentTime.Minutes * 6));
+  DrawHand(Degrees, 140, Black);
+
+  Degrees := (180 - (CurrentTime.Seconds * 6));
+  DrawHand(Degrees, 140, Black);
 end;
 
 procedure Main(CurrentTime: TimeRec);
@@ -211,5 +211,4 @@ begin
     Halt;
   end
 end.
-
 
